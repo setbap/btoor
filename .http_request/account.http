@@ -1,0 +1,27 @@
+@baseUrl = http://localhost:8000/api
+
+@contentType = application/json
+
+### first reuqest
+POST http://localhost:8000/api/account/token/ HTTP/1.1
+content-type: application/json
+
+{
+  "email": "ebr.sina@gmail.com",
+  "password": "sina1234"
+}
+
+###
+### first reuqest
+POST http://localhost:8000/api/account/signup/ HTTP/1.1
+content-type: application/json
+
+{
+  "email": "ebr.sina@gmail.com",
+  "username" : "soo4",
+  "first_name" : "",
+  "last_name" : "soo",
+  "password": "sina1234"
+}
+
+###
