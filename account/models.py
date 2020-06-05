@@ -10,6 +10,18 @@ class User(AbstractUser):
     email = models.EmailField(_('email address'), unique=True)
     first_name = models.CharField(_('first name'), max_length=30, )
     last_name = models.CharField(_('last name'), max_length=150, )
+    activation_token = models.CharField(_('activation token'), max_length=30,blank=True,null=True )
+    reset_password_token = models.CharField(_('reset password token'), max_length=30,blank=True,null=True )
+    
+    
+    is_active = models.BooleanField(
+        _('active'),
+        default=False,
+        help_text=_(
+            'Designates whether this user should be treated as active. '
+            'Unselect this instead of deleting accounts.'
+        ),
+    )
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
 

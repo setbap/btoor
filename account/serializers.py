@@ -19,5 +19,12 @@ class CreateUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'password', 'first_name', 'last_name', 'email')
-        extra_kwargs = {'password': {'write_only': True}}
+        fields = ('username', 'password', 'first_name',
+                  'last_name', 'email', 'activation_token')
+        extra_kwargs = {'password': {'write_only': True},
+                        'activation_token': {'write_only': True}}
+
+
+class UserActivation(serializers.Serializer):
+    activation_token = serializers.CharField(max_length=30)
+    email = serializers.CharField(max_length=30)

@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+from .env import *
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -119,6 +120,7 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.MultiPartParser',
     ],
 }
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/

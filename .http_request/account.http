@@ -7,7 +7,7 @@ POST http://localhost:8000/api/account/token/ HTTP/1.1
 content-type: application/json
 
 {
-  "email": "ebr.sina@gmail.com",
+  "email": "b@a.com",
   "password": "sina1234"
 }
 
@@ -17,10 +17,39 @@ POST http://localhost:8000/api/account/signup/ HTTP/1.1
 content-type: application/json
 
 {
-  "email": "ebr.sina@gmail.com",
-  "username" : "soo4",
-  "first_name" : "",
+  "email": "aq@a.com",
+  "username" : "aq",
+  "first_name" : "po",
   "last_name" : "soo",
+  "password": "sina1234"
+}
+
+###
+
+### first reuqest
+POST http://localhost:8000/api/account/activation/ HTTP/1.1
+content-type: application/json
+
+{
+  "email": "aq@a.com",
+  "activation_token" : "1_alKrNwhA"
+}
+
+###
+
+### first reuqest
+POST http://localhost:8000/api/account/hello/ HTTP/1.1
+content-type: application/json
+
+
+###
+
+### first reuqest
+POST http://localhost:8000/api/account/test/ HTTP/1.1
+content-type: application/json
+
+{
+  "email": "ebr.sina@gmail.com",
   "password": "sina1234"
 }
 

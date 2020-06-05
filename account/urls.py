@@ -1,6 +1,6 @@
 from django.urls import path
 from rest_framework_simplejwt import views as jwt_views
-from .api import HelloView, signup
+from .apis import HelloView, signup,UserActivate
 
 # base url : /api/account/
 
@@ -11,5 +11,7 @@ urlpatterns = [
     path('token/refresh/', jwt_views.TokenRefreshView.as_view(), name='token_refresh'),
 
     path('hello/', HelloView.as_view(), name='hello'),
+    path('activation/', UserActivate.as_view(), name='activate user'),
+    path('test/', HelloView.as_view(), name='hello'),
     path('signup/', signup, name='signup'),
 ]
