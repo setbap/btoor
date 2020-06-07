@@ -25,6 +25,6 @@ class CreateUserSerializer(serializers.ModelSerializer):
                         'activation_token': {'write_only': True}}
 
 
-class UserActivation(serializers.Serializer):
+class UserActivationSerializer(serializers.Serializer):
     activation_token = serializers.CharField(max_length=30)
     email = serializers.CharField(max_length=30)

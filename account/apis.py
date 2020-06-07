@@ -4,7 +4,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, authentication_classes
-from .serializers import CreateUserSerializer, UserActivation
+from rest_framework.generics import ListAPIView, RetrieveUpdateAPIView
+from .serializers import CreateUserSerializer, UserActivationSerializer, UserSerializer
 from .models import User
 from django.core.mail import send_mail
 import secrets
@@ -31,7 +32,7 @@ def signup(request):
 class UserActivate(APIView):
 
     def post(self, reqest):
-        info = UserActivation(data=reqest.data)
+        info = UserActivationSerializer(data=reqest.data)
         if info.is_valid(raise_exception=True):
             user = User.objects.filter(email=reqest.data["email"])
             if user.exists():
@@ -44,18 +45,16 @@ class UserActivate(APIView):
                     user.activation_token = ""
                     user.save()
                     return Response(data={"status": "user activated"}, status=status.HTTP_200_OK)
-        return Response(data={"status": "wrong info make sure your request include 'activation_token' and 'email' and right info "}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(
+            data={"status": "wrong info make sure your request include 'activation_token' and 'email' and right info "},
+            status=status.HTTP_400_BAD_REQUEST)
 
 
-class HelloView(APIView):
-    # permission_classes = (IsAuthenticated,)
+class HelloView(ListAPIView):
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
 
-    def post(self, request):
-        content = {'message': 'Hello, World!'}
-        # send_mail(
-        #     subject='That’s your subject',
-        #     message='That’s your message body',
-        #     from_email=settings.EMAIL_HOST_USER,
-        #     recipient_list=['teciso6214@lerwfv.com'],
-        # )
-        return Response(content)
+
+class HelloView2(RetrieveUpdateAPIView):
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
